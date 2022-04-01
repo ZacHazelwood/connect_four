@@ -2,18 +2,22 @@ require './lib/game'
 require './lib/board'
 require 'pry'
 
-describe Game do
-
+RSpec.describe Game do
   it "exists" do
     game = Game.new
 
     expect(game).to be_an_instance_of(Game)
   end
 
-  it "opens with welcome message" do
+  xit "welcome message" do
     game = Game.new
-    game.game_open
-    expect().to
+
+    expect(game.game_open).to eq()
   end
 
+  xit "start game" do
+    game = Game.new
+
+    expect().to eq()
+  end
 end

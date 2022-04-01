@@ -1,12 +1,22 @@
 require './lib/board'
 require 'pry'
-describe Board do
 
-  it "prints column headers" do
-
+RSpec.describe Board do
+  it "Board exists" do
     board = Board.new
-binding.pry
-    board.print_board
-    expect(board.print_board).to eq("A B C D E F G")
+
+    expect(board).to be_an_instance_of(Board)
+end
+
+  it "board has 7 arrays" do
+    board = Board.new
+
+    expect(board.board_column.join(' ')).to eq("A B C D E F G")
+    expect(board.full_board).to eq([[".", ".", ".", ".", ".", ".", "."],
+                                    [".", ".", ".", ".", ".", ".", "."],
+                                    [".", ".", ".", ".", ".", ".", "."],
+                                    [".", ".", ".", ".", ".", ".", "."],
+                                    [".", ".", ".", ".", ".", ".", "."],
+                                    [".", ".", ".", ".", ".", ".", "."]])
   end
 end
