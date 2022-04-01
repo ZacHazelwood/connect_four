@@ -3,9 +3,9 @@ require 'pry'
 
 RSpec.describe Board do
   it "Board exists" do
-  board = Board.new
+    board = Board.new
 
-  expect(board).to be_an_instance_of(Board)
+    expect(board).to be_an_instance_of(Board)
 end
 
   it "board has 7 arrays" do
