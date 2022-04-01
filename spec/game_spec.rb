@@ -12,7 +12,6 @@ describe Game do
 
   it "opens with welcome message" do
     game = Game.new
-binding.pry
     game.game_open
     expect().to
   end
