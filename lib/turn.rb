@@ -55,7 +55,7 @@ attr_reader :board, :player_type, :column, :player_input
     end
   end
 
-  def valid_input?
+  def input_valid?
     ["A","B","C","D","E","F","G"].include?(@player_input)
   end
 end

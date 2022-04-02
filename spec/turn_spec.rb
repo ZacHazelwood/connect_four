@@ -102,4 +102,18 @@ describe Turn do
     # .stub(:select) allows for the test to select one of the variables within the player_input array available to the computer
     expect(turn.assign_column("A")).to eq([".", ".", ".", ".", ".", "."])
   end
+
+  # After failing at the first attempt at take_turn, I established the #input_valid? method
+  # Will test input validity
+  it "checks valid input" do
+    board = Board.new
+    player_1 = Player.new(:computer)
+    turn = Turn.new(board, player_1.type)
+
+    turn.take_turn
+    turn.stub(:gets).and_return("Z")
+    expect(turn.input_valid?).to eq(false)
+  end
+
+
 end
