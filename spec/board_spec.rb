@@ -6,7 +6,7 @@ RSpec.describe Board do
     board = Board.new
 
     expect(board).to be_an_instance_of(Board)
-end
+  end
 
   it "board has 7 arrays" do
     board = Board.new
@@ -19,6 +19,7 @@ end
                                     [".", ".", ".", ".", ".", ".", "."],
                                     [".", ".", ".", ".", ".", ".", "."]])
   end
+
 
   it "player connects 4 pieces horizontally" do
     board = Board.new

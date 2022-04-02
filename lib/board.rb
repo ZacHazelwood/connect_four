@@ -3,9 +3,9 @@ class Board
 
 attr_reader :full_board, :board_column
 
- def initialize
-   @board_column = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
-   @full_board = [
+  def initialize
+    @board_column = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+    @full_board = [
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."],
@@ -13,7 +13,7 @@ attr_reader :full_board, :board_column
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."]
     ]
- end
+  end
 
   def print_board
     puts @board_column.join(' ')
@@ -36,7 +36,6 @@ attr_reader :full_board, :board_column
                if counter == 4
                  return true
                end
-            #   binding.pry
                if row[index + 1] != "x" && counter != 4
                  counter = 0
                end
@@ -59,7 +58,6 @@ attr_reader :full_board, :board_column
 
 
   def has_won_vertically?
-    board_column = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
     a = []
     b = []
     c = []
@@ -117,4 +115,15 @@ attr_reader :full_board, :board_column
     end
     puts counter
   end
+
+  def add_x(row, col)
+    # binding.pry
+    @full_board[row][col] = "X"
+  end
+
+  def add_o(row, col)
+    @full_board[row][col] = "O"
+  end
+
+  
 end
