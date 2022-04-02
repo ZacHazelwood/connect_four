@@ -31,4 +31,31 @@ describe Turn do
     expect(turn.column).to eq([".", ".", ".", ".", ".", "X"])
   end
 
+  it "counts empty spaces in column" do
+    board = Board.new
+    player_1 = Player.new(:human)
+    turn = Turn.new(board, player_1.type)
+
+    turn.assign_column("A")
+    expect(turn.space_empty).to eq(6)
+  end
+
+  it "checks column for playable spaces" do
+    board = Board.new
+    player_1 = Player.new(:human)
+    turn = Turn.new(board, player_1.type)
+
+    turn.assign_column("A")
+    expect(turn.space_playable?).to eq(true)
+
+    board.add_x(5, 1)
+    board.add_x(4, 1)
+    board.add_x(3, 1)
+    board.add_x(2, 1)
+    board.add_x(1, 1)
+    board.add_x(0, 1)
+    turn.assign_column("B")
+    expect(turn.space_playable?).to eq(false)
+  end
+
 end

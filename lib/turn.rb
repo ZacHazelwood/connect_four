@@ -24,4 +24,20 @@ attr_reader :board, :player_type, :column, :player_input
       }
       @column = columns[player_input]
   end
+
+  def space_empty
+    @column.count do |empty_space|
+      empty_space == "."
+    end
+  end
+
+  def space_playable?
+    count = self.space_empty
+      if count != 0
+        true
+      else
+        false
+      end
+  end
+
 end
