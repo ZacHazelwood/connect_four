@@ -1,25 +1,16 @@
 require './lib/turn'
+require './lib/player'
 require './lib/board'
 
 describe Turn do
 
   it "exists" do
-    turn = Turn.new Board.new
+    board = Board.new
+    player_1 = Player.new(:human)
+    turn = Turn.new(board, player_1.type)
 
     expect(turn).to be_an_instance_of(Turn)
   end
 
-  xit "asks for input" do
-
-
-
-  end
-
-  it "checks for playable columns" do
-    turn = Turn.new Board.new
-    turn.transpose_columns("A")
-
-    expect(turn.column_playable?).to be(true)
-  end
 
 end
