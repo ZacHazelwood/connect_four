@@ -57,7 +57,7 @@ attr_reader :full_board, :board_column
   end
 
 
-  def has_won_vertically?
+  def has_won_vertically?(full_board)
     a = []
     b = []
     c = []
@@ -65,15 +65,8 @@ attr_reader :full_board, :board_column
     e = []
     f = []
     g = []
-    full_board = [
-      [".",".",".",".",".",".","."],
-      [".",".",".",".","x",".","."],
-      [".",".",".","x","x",".","."],
-      [".",".",".","o","x",".","."],
-      [".",".",".","o","x",".","."],
-      [".",".",".","x","o",".","."]
-    ]
-     counter = 0
+
+    counter = 0
 
     full_board.each_with_index do |row, row_index|
       row.each_with_index do |cell, cell_index|
@@ -101,20 +94,33 @@ attr_reader :full_board, :board_column
       end
     end
     turn_vertical_board = [a, b, c, d, e, f, g]
+    #binding.pry
     turn_vertical_board.each do |array|
-      array.each do |x_index|
-        if x_index == "x"
-          counter += 1
-          if counter == 4
-            return true
+        array.each_with_index do |cell_position, index|
+          if cell_position == "x"
+            counter += 1
+            if counter == 4
+              return true
+            end
+            if array[index + 1] != "x" && counter != 4
+              counter = 0
+            end
           end
-        elsif x_index != "x"
-          counter = 0
+          if cell_position == "o"
+            counter += 1
+            if counter == 4
+              return true
+            end
+             if array[index + 1] != "o" && counter != 4
+               counter = 0
+             end
+          end
         end
       end
-    end
-    puts counter
+    return false
   end
+
+
 
   def add_x(row, col)
     # binding.pry
@@ -125,5 +131,5 @@ attr_reader :full_board, :board_column
     @full_board[row][col] = "O"
   end
 
-  
+
 end
