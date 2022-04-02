@@ -19,4 +19,20 @@ end
                                     [".", ".", ".", ".", ".", ".", "."],
                                     [".", ".", ".", ".", ".", ".", "."]])
   end
+
+  it "player connects 4 pieces horizontally" do
+    board = Board.new
+
+    expect(board.has_won_horizontally?).to eq true
+  end
+
+
+
+
+
+# The player connects four of their pieces horizontally, vertically, or diagonally.
+# The computer connects four of their pieces horizontally, vertically, or diagonally.
+# The player cannot select a valid column.
+# The program reports the appropriate endgame status
+# Game returns user back to the Main Menu
 end
