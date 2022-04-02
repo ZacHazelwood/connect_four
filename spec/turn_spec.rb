@@ -4,24 +4,22 @@ require './lib/board'
 describe Turn do
 
   it "exists" do
-    turn = Turn.new(...)
+    turn = Turn.new Board.new
 
     expect(turn).to be_an_instance_of(Turn)
   end
 
-  it "adds X" do
-    turn = Turn.new(...)
+  xit "asks for input" do
 
-    turn.add_x(6, 0)
-    expect().to
+
+
   end
 
-  it "adds O" do
-    turn = Turn.new(...)
+  it "checks for playable columns" do
+    turn = Turn.new Board.new
+    turn.transpose_columns("A")
 
-    turn.add_o(6, 6)
-    expect().to
+    expect(turn.column_playable?).to be(true)
   end
-
 
 end
