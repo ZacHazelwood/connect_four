@@ -1,5 +1,3 @@
-
-
 class Board
 
 attr_reader :full_board, :board_column
@@ -21,5 +19,9 @@ attr_reader :full_board, :board_column
     @full_board.each do |row|
       puts row.join(' ')
     end
+  end
+
+  def add_piece(player)
+
   end
 end
