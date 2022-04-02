@@ -58,4 +58,13 @@ describe Turn do
     expect(turn.space_playable?).to eq(false)
   end
 
+  it "checks the lowest point of a column" do
+    board = Board.new
+    player_1 = Player.new(:human)
+    turn = Turn.new(board, player_1.type)
+
+    turn.assign_column("A")
+    expect(turn.column_lowest).to eq(5)
+  end
+
 end

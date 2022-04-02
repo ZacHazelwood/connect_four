@@ -40,4 +40,7 @@ attr_reader :board, :player_type, :column, :player_input
       end
   end
 
+  def column_lowest
+    low_point = self.space_empty - 1
+  end
 end
