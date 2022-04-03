@@ -23,41 +23,96 @@ RSpec.describe Board do
 
   it "player connects 4 pieces horizontally" do
     board = Board.new
+    full_board = [
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".","x","o",".",".",".","."],
+      [".","o","x","x","x","x","o"]
+    ]
 
-    expect(board.has_won_horizontally?).to eq true
+    full_board1 = [
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".","x",".",".",".","."],
+      [".","x","o","o",".",".","."],
+      [".","o","x","o","x","x","o"]
+    ]
+
+    full_board2 = [
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".","x",".",".",".","."],
+      [".","x","o","o",".",".","."],
+      [".","o","x","o","o","o","o"]
+    ]
+
+    full_board3 = [
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".","x",".",".",".","."],
+      [".","x","o","o",".",".","."],
+      [".","o","x","x","x","o","o"]
+    ]
+
+    expect(board.has_won_horizontally?(full_board)).to eq true
+    expect(board.has_won_horizontally?(full_board1)).to eq false
+    expect(board.has_won_horizontally?(full_board2)).to eq true
+    expect(board.has_won_horizontally?(full_board3)).to eq false
   end
 
-
-
-
-
-# The player connects four of their pieces horizontally, vertically, or diagonally.
-# The computer connects four of their pieces horizontally, vertically, or diagonally.
-# The player cannot select a valid column.
-# The program reports the appropriate endgame status
-# Game returns user back to the Main Menu
-
-  it "can add x to board" do
+  it "player connects 4 pieces vertically" do
     board = Board.new
-    # binding.pry
-    board.add_x(5, 0)
-    board.print_board
+    full_board = [
+      [".",".","x",".",".",".","."],
+      [".",".","x",".",".",".","."],
+      [".",".","x",".",".",".","."],
+      [".",".","x",".",".",".","."],
+      [".","x","o",".",".",".","."],
+      [".","o","x","x","x","x","o"]
+    ]
 
-    expect(board.full_board[5][0].include?('X')).to be(true)
+    full_board1 = [
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".","x","o",".",".","."],
+      [".","x","o","o",".",".","."],
+      [".","o","x","o","x","x","o"]
+    ]
+
+    full_board2 = [
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".","o",".","."],
+      [".",".","x","x","o",".","."],
+      [".","x","o","o","o",".","."],
+      [".","o","x","o","o","o","o"]
+    ]
+
+    full_board3 = [
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".","x",".",".",".","."],
+      [".","x","o","o",".",".","."],
+      [".","o","x","x","x","o","o"]
+    ]
+
+    expect(board.has_won_vertically?(full_board)).to eq true
+    expect(board.has_won_vertically?(full_board1)).to eq false
+    expect(board.has_won_vertically?(full_board2)).to eq true
+    expect(board.has_won_vertically?(full_board3)).to eq false
   end
 
-  it "can add o to board" do
+  xit "player connects 4 pieces diagonally" do
     board = Board.new
-    board.add_x(5, 0)
-    board.add_o(2, 2)
-    board.print_board
 
-    expect(board.full_board[2][2].include?('O')).to be(true)
+    expect(board.has_won_diagonally?).to eq true
   end
 
-  xit "adds piece" do
-    board = Board.new
-
-
-  end
 end
