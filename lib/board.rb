@@ -1,7 +1,8 @@
 require 'pry'
 class Board
 
-attr_reader :full_board, :board_column
+attr_reader :board_column 
+attr_accessor :full_board
 
   def initialize
     @board_column = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
@@ -22,9 +23,9 @@ attr_reader :full_board, :board_column
     end
   end
 
-  def has_won_horizontally?(full_board)
+  def has_won_horizontally?
      counter = 0
-     full_board.each_with_index do |row, row_index|
+     @full_board.each_with_index do |row, row_index|
        row.each_with_index do |cell, cell_index|
          if counter == 4
            return true
@@ -57,7 +58,7 @@ attr_reader :full_board, :board_column
   end
 
 
-  def has_won_vertically?(full_board)
+  def has_won_vertically?
     a = []
     b = []
     c = []
@@ -68,7 +69,7 @@ attr_reader :full_board, :board_column
 
     counter = 0
 
-    full_board.each_with_index do |row, row_index|
+    @full_board.each_with_index do |row, row_index|
       row.each_with_index do |cell, cell_index|
           if cell_index == 0
             a << cell
@@ -94,7 +95,6 @@ attr_reader :full_board, :board_column
       end
     end
     turn_vertical_board = [a, b, c, d, e, f, g]
-    #binding.pry
     turn_vertical_board.each do |array|
         array.each_with_index do |cell_position, index|
           if cell_position == "x"
@@ -120,6 +120,37 @@ attr_reader :full_board, :board_column
     return false
   end
 
+  def has_won_diagonally?
+    counter = 0
+
+    @full_board.each_with_index do |row, row_index|
+      row.each_with_index do |cell, cell_index|
+          # binding.pry
+
+          array.each_with_index do |cell_position, index|
+            if cell_position == "x"
+              counter += 1
+              if counter == 4
+                return true
+              end
+              if array[index + 1] != "x" && counter != 4
+                counter = 0
+              end
+            end
+            if cell_position == "o"
+              counter += 1
+              if counter == 4
+                return true
+              end
+               if array[index + 1] != "o" && counter != 4
+                 counter = 0
+               end
+            end
+          end
+        end
+      return false
+    end
+  end
 
 
   def add_x(row, col)
@@ -130,6 +161,5 @@ attr_reader :full_board, :board_column
   def add_o(row, col)
     @full_board[row][col] = "O"
   end
-
 
 end

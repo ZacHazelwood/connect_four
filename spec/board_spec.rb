@@ -23,7 +23,12 @@ RSpec.describe Board do
 
   it "player connects 4 pieces horizontally" do
     board = Board.new
-    full_board = [
+    board1 = Board.new
+    board2 = Board.new
+    board3 = Board.new
+
+
+    board.full_board = [
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."],
@@ -32,7 +37,7 @@ RSpec.describe Board do
       [".","o","x","x","x","x","o"]
     ]
 
-    full_board1 = [
+    board1.full_board = [
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."],
@@ -41,7 +46,7 @@ RSpec.describe Board do
       [".","o","x","o","x","x","o"]
     ]
 
-    full_board2 = [
+    board2.full_board = [
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."],
@@ -50,7 +55,7 @@ RSpec.describe Board do
       [".","o","x","o","o","o","o"]
     ]
 
-    full_board3 = [
+    board3.full_board = [
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."],
@@ -59,15 +64,19 @@ RSpec.describe Board do
       [".","o","x","x","x","o","o"]
     ]
 
-    expect(board.has_won_horizontally?(full_board)).to eq true
-    expect(board.has_won_horizontally?(full_board1)).to eq false
-    expect(board.has_won_horizontally?(full_board2)).to eq true
-    expect(board.has_won_horizontally?(full_board3)).to eq false
+    expect(board.has_won_horizontally?).to eq true
+    expect(board1.has_won_horizontally?).to eq false
+    expect(board2.has_won_horizontally?).to eq true
+    expect(board3.has_won_horizontally?).to eq false
   end
 
   it "player connects 4 pieces vertically" do
     board = Board.new
-    full_board = [
+    board1 = Board.new
+    board2 = Board.new
+    board3 = Board.new
+
+    board.full_board = [
       [".",".","x",".",".",".","."],
       [".",".","x",".",".",".","."],
       [".",".","x",".",".",".","."],
@@ -76,7 +85,7 @@ RSpec.describe Board do
       [".","o","x","x","x","x","o"]
     ]
 
-    full_board1 = [
+    board1.full_board = [
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."],
@@ -85,7 +94,7 @@ RSpec.describe Board do
       [".","o","x","o","x","x","o"]
     ]
 
-    full_board2 = [
+    board2.full_board = [
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."],
       [".",".",".",".","o",".","."],
@@ -94,7 +103,7 @@ RSpec.describe Board do
       [".","o","x","o","o","o","o"]
     ]
 
-    full_board3 = [
+    board3.full_board = [
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."],
       [".",".",".",".",".",".","."],
@@ -103,16 +112,59 @@ RSpec.describe Board do
       [".","o","x","x","x","o","o"]
     ]
 
-    expect(board.has_won_vertically?(full_board)).to eq true
-    expect(board.has_won_vertically?(full_board1)).to eq false
-    expect(board.has_won_vertically?(full_board2)).to eq true
-    expect(board.has_won_vertically?(full_board3)).to eq false
+    expect(board.has_won_vertically?).to eq true
+    expect(board1.has_won_vertically?).to eq false
+    expect(board2.has_won_vertically?).to eq true
+    expect(board3.has_won_vertically?).to eq false
   end
 
   xit "player connects 4 pieces diagonally" do
     board = Board.new
+    board1 = Board.new
+    board2 = Board.new
+    board3 = Board.new
+
+
+    board.full_board = [
+      ["x",".",".",".",".",".","."],
+      [".","x",".",".",".",".","."],
+      [".",".","x","o",".",".","."],
+      [".",".","x","x",".",".","."],
+      [".","x","o","o",".",".","."],
+      ["x","o","x","x","o","x","o"]
+    ]
+
+    board1.full_board = [
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".","x","o",".",".","."],
+      [".","x","o","o",".",".","."],
+      [".","o","x","o","x","x","o"]
+    ]
+
+    board2.full_board = [
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".","o",".","."],
+      [".",".","x","o","o",".","."],
+      [".","x","o","x","x",".","."],
+      [".","o","x","o","x","o","o"]
+    ]
+
+    board3.full_board = [
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".","x",".",".",".","."],
+      [".","x","o","o",".",".","."],
+      [".","o","x","x","x","o","o"]
+    ]
 
     expect(board.has_won_diagonally?).to eq true
+    expect(board1.has_won_diagonally?).to eq false
+    expect(board2.has_won_diagonally?).to eq true
+    expect(board3.has_won_diagonally?).to eq false
   end
 
 end
