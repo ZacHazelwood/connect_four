@@ -1,28 +1,18 @@
 require './lib/board'
 require './lib/player'
 require './lib/turn'
+require 'pry'
 
 class Game
 
-attr_reader :human_player, :comp_player, :board, :human_turn, :comp_turn, :column_header
+attr_reader :human_player, :comp_player, :board, :human_turn, :comp_turn
 
   def initialize
     @human_player = Player.new(:human)
     @comp_player = Player.new(:computer)
     @board = Board.new
-    @human_turn = Turn.new(human_player.type, @board)
-    @comp_turn = Turn.new(comp_player.type, @board)
-# Added a new hash that assigns player_input values to the Column position of the full_board array
-# When calling add_x or add_o, the playable piece will be assigned it's lowest row position, relative to the column header
-    @column_header = {
-      "A" => 0,
-      "B" => 1,
-      "C" => 2,
-      "D" => 3,
-      "E" => 4,
-      "F" => 5,
-      "G" => 6
-    }
+    @human_turn = Turn.new(@board, human_player.type)
+    @comp_turn = Turn.new(@board, comp_player.type)
   end
 
   def game_open
@@ -31,8 +21,10 @@ attr_reader :human_player, :comp_player, :board, :human_turn, :comp_turn, :colum
     input = gets.chomp.downcase
       until input == 'p' || input == 'q'
         puts "Please try again."
+        puts "Please enter 'p' to play, or 'q' to quit."
         input = gets.chomp.downcase
       end
+# When requires a case, which is console input
     case input
     when 'p'
       game_start
@@ -55,7 +47,7 @@ attr_reader :human_player, :comp_player, :board, :human_turn, :comp_turn, :colum
             @human_turn.take_turn
           end
         end
-# At first, we select a Column Header assignment
+# At first, we select a Column Header assignment, assuming the input is valid
         @human_turn.assign_column(@human_turn.player_input)
         @human_turn.space_empty
 # Then, we check that the column and space is playable
@@ -74,7 +66,7 @@ attr_reader :human_player, :comp_player, :board, :human_turn, :comp_turn, :colum
             end
           end
 # When everything checks out, the player drops their X to the cooresponding position
-          @board.add_x(@player_turn.column_lowest, @player_turn.column_header[@player_tun.player_input])
+          @board.add_x(@human_turn.column_lowest, @human_turn.column_header[@human_turn.player_input])
 # Then reprint the board as it has just been modified and check for win conditions
           @board.print_board
           @board.has_won_horizontally
@@ -102,13 +94,16 @@ attr_reader :human_player, :comp_player, :board, :human_turn, :comp_turn, :colum
       @comp_turn.take_turn
       @comp_turn.assign_column(@comp_turn.player_input)
 # Check that the computer's selections are valid
+# The computer only needs to check that the column selection is playable, since
+# there is no need to ask the computer for direct input
         if @comp_turn.space_playable? == false
           until @comp_turn.space_playable? == true
             @comp_turn.take_turn
             @comp_turn.assign_column(@comp_turn.player_input)
           end
         end
-        @comp_turn.add_o(@comp_turn.column_lowest, @comp_turn.column_header[@comp_turn.player_input])
+# Computer just places a piece instantly
+        @board.add_o(@comp_turn.column_lowest, @comp_turn.column_header[@comp_turn.player_input])
         @board.print_board
 # Rescan the win conditions after the computer turn
         @board.has_won_horizontally
@@ -120,19 +115,20 @@ attr_reader :human_player, :comp_player, :board, :human_turn, :comp_turn, :colum
           break
         end
         @board.has_won_diagonally
-        if @board.has_won_diagonally == true
-          break
-        end
+          if @board.has_won_diagonally == true
+            break
+          end
         @board.has_won_diagonally_negative
-        if @board.has_won_diagonally_negative == true
-          break
-        end
+          if @board.has_won_diagonally_negative == true
+            break
+          end
         @board.draw
         if @board.draw == true
           break
         end
-
     end
+# Finally, restart the game after a win condition is met
+    restart_game = Game.new
+    restart_game.game_open
   end
-
 end
