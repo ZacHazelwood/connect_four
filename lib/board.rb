@@ -23,30 +23,32 @@ attr_accessor :full_board
     end
   end
 
-  def has_won_horizontally?
+  def has_won_horizontally
      counter = 0
      @full_board.each_with_index do |row, row_index|
        row.each_with_index do |cell, cell_index|
          if counter == 4
            return true
          end
-         if cell_index == 3 && cell == "x" || cell_index == 3 && cell == "o"
+         if cell_index == 3 && cell == "X" || cell_index == 3 && cell == "O"
            row.each_with_index do |cell_position, index|
-             if cell_position == "x"
+             if cell_position == "X"
                counter += 1
                if counter == 4
+                 puts "Congradulations, Human. You Win!"
                  return true
                end
-               if row[index + 1] != "x" && counter != 4
+               if row[index + 1] != "X" && counter != 4
                  counter = 0
                end
              end
-             if cell_position == "o"
+             if cell_position == "O"
                counter += 1
                if counter == 4
+                 puts "The computer Wins!"
                  return true
                end
-                if row[index + 1] != "o" && counter != 4
+                if row[index + 1] != "O" && counter != 4
                   counter = 0
                 end
              end
@@ -58,7 +60,7 @@ attr_accessor :full_board
   end
 
 
-  def has_won_vertically?
+  def has_won_vertically
     a = []
     b = []
     c = []
@@ -97,21 +99,23 @@ attr_accessor :full_board
     turn_vertical_board = [a, b, c, d, e, f, g]
     turn_vertical_board.each do |array|
         array.each_with_index do |cell_position, index|
-          if cell_position == "x"
+          if cell_position == "X"
             counter += 1
             if counter == 4
+              puts "Congradulations, Human! You Win!"
               return true
             end
-            if array[index + 1] != "x" && counter != 4
+            if array[index + 1] != "X" && counter != 4
               counter = 0
             end
           end
-          if cell_position == "o"
+          if cell_position == "O"
             counter += 1
             if counter == 4
+              puts "The computer Wins!"
               return true
             end
-             if array[index + 1] != "o" && counter != 4
+             if array[index + 1] != "O" && counter != 4
                counter = 0
              end
           end
@@ -120,17 +124,18 @@ attr_accessor :full_board
     return false
   end
 
-  def has_won_diagonally?
+  def has_won_diagonally
 
     @full_board.each_with_index do |row, row_index|
       row.each_with_index do |cell, cell_index|
-        if cell == "x"
+        if cell == "X"
           if cell_index + 1 < row.length && row_index + 1 < @full_board.length
-            if @full_board[row_index + 1][cell_index + 1] == "x"
+            if @full_board[row_index + 1][cell_index + 1] == "X"
               if cell_index + 2 < row.length && row_index + 2 < @full_board.length
-                if @full_board[row_index + 2][cell_index + 2] == "x"
+                if @full_board[row_index + 2][cell_index + 2] == "X"
                   if cell_index + 3 < row.length && row_index + 3 < @full_board.length
-                    if @full_board[row_index + 3][cell_index + 3] == "x"
+                    if @full_board[row_index + 3][cell_index + 3] == "X"
+                      puts "Congradulations, Human! You Win!"
                       return true
                     end
                   end
@@ -139,13 +144,14 @@ attr_accessor :full_board
             end
           end
         end
-        if cell == "o"
+        if cell == "O"
           if cell_index + 1 < row.length && row_index + 1 < @full_board.length
-            if @full_board[row_index + 1][cell_index + 1] == "o"
+            if @full_board[row_index + 1][cell_index + 1] == "O"
               if cell_index + 2 < row.length && row_index + 2 < @full_board.length
-                if @full_board[row_index + 2][cell_index + 2] == "o"
+                if @full_board[row_index + 2][cell_index + 2] == "O"
                   if cell_index + 3 < row.length && row_index + 3 < @full_board.length
-                    if @full_board[row_index + 3][cell_index + 3] == "o"
+                    if @full_board[row_index + 3][cell_index + 3] == "O"
+                      puts "The computer Wins!"
                       return true
                     end
                   end
@@ -159,17 +165,18 @@ attr_accessor :full_board
     return false
   end
 
-  def has_won_diagonally_negative?
+  def has_won_diagonally_negative
 
     @full_board.each_with_index do |row, row_index|
       row.each_with_index do |cell, cell_index|
-        if cell == "x"
+        if cell == "X"
           if cell_index - 1 < row.length && row_index + 1 < @full_board.length
-            if @full_board[row_index + 1][cell_index - 1] == "x"
+            if @full_board[row_index + 1][cell_index - 1] == "X"
               if cell_index - 2 < row.length && row_index + 2 < @full_board.length
-                if @full_board[row_index + 2][cell_index - 2] == "x"
+                if @full_board[row_index + 2][cell_index - 2] == "X"
                   if cell_index - 3 < row.length && row_index + 3 < @full_board.length
-                    if @full_board[row_index + 3][cell_index - 3] == "x"
+                    if @full_board[row_index + 3][cell_index - 3] == "X"
+                      puts "Congradulations, Human! You Win!"
                       return true
                     end
                   end
@@ -178,13 +185,14 @@ attr_accessor :full_board
             end
           end
         end
-        if cell == "o"
+        if cell == "O"
           if cell_index - 1 < row.length && row_index + 1 < @full_board.length
-            if @full_board[row_index + 1][cell_index - 1] == "o"
+            if @full_board[row_index + 1][cell_index - 1] == "O"
               if cell_index - 2 < row.length && row_index + 2 < @full_board.length
-                if @full_board[row_index + 2][cell_index - 2] == "o"
+                if @full_board[row_index + 2][cell_index - 2] == "O"
                   if cell_index - 3 < row.length && row_index + 3 < @full_board.length
-                    if @full_board[row_index + 3][cell_index - 3] == "o"
+                    if @full_board[row_index + 3][cell_index - 3] == "O"
+                      puts "The computer Wins!"
                       return true
                     end
                   end
@@ -198,9 +206,13 @@ attr_accessor :full_board
     return false
   end
 
-
-
-
+  def draw
+    if @full_board[0].include?('.')
+      return false
+    else
+      return true
+    end
+  end
 
 
 
