@@ -12,7 +12,7 @@ attr_reader :board, :player_type, :column, :player_input
     @player_input = ""
   end
 
-
+# Transposes the full_board into columns associated to their letter value
   def assign_column(player_input)
     columns = {
         "A" => @board.full_board.transpose[0],
@@ -32,6 +32,8 @@ attr_reader :board, :player_type, :column, :player_input
     end
   end
 
+# Using self here calls upon the above #space_empty method and is referring to
+# the empty_space variable from the #space_empty method.
   def space_playable?
     count = self.space_empty
       if count != 0
@@ -41,6 +43,7 @@ attr_reader :board, :player_type, :column, :player_input
       end
   end
 
+# Checks the indexes of the column positions and subtracts 1 for an above placement
   def column_lowest
     low_point = self.space_empty - 1
   end
@@ -49,33 +52,17 @@ attr_reader :board, :player_type, :column, :player_input
     if @player_type == :human
       puts "Please select a column. Select A - G"
       @player_input = gets.chomp.upcase
-    elsif @player_tpye == :computer
+    elsif @player_type == :computer
       puts "The computer will select a column."
       @player_input = (["A","B","C","D","E","F","G"]).sample
     end
   end
 
   def input_valid?
-    ["A","B","C","D","E","F","G"].include?(@player_input)
+    if ["A","B","C","D","E","F","G"].include?(@player_input)
+      return true
+    else
+      return false
+    end
   end
 end
-
-
-# This just didn't work, had too many conditionals and was throwing errors in my terminal.
-# So I thought to condense the #take_turn method to just ask for input from the user,
-# and will check for valididty of the input when asking for the turn to commence.
-
-  # def take_turn
-  #   if @player_type == :human
-  #     puts "Please choose a column by typing it's letter value. Select A - G"
-  #     @player_input = gets.chomp.upcase
-  #     until player_input == "A" || player_input == "B" || player_input == "C" || player_input == "D" || player_input == "E" || player_input == "F" || player_input == "G"
-  #       puts "----- Invalid Input. Please try again. Select A - G -----"
-  #       @player_input = gets.chomp.upcase
-  #     end
-  #   elsif @player_type == :computer
-  #     puts "The computer will select a column."
-  #     @player_input = (["A", "B", "C", "D", "E", "F", "G"]).sample
-  #     # .sample selects a random element within an array
-  #   end
-  # end
