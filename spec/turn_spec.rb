@@ -107,7 +107,7 @@ describe Turn do
   # Will test input validity
   it "checks valid input" do
     board = Board.new
-    player_1 = Player.new(:computer)
+    player_1 = Player.new(:human)
     turn = Turn.new(board, player_1.type)
 
     turn.take_turn
