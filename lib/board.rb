@@ -1,7 +1,7 @@
 require 'pry'
 class Board
 
-attr_reader :board_column 
+attr_reader :board_column
 attr_accessor :full_board
 
   def initialize
@@ -121,36 +121,87 @@ attr_accessor :full_board
   end
 
   def has_won_diagonally?
-    counter = 0
 
     @full_board.each_with_index do |row, row_index|
       row.each_with_index do |cell, cell_index|
-          # binding.pry
-
-          array.each_with_index do |cell_position, index|
-            if cell_position == "x"
-              counter += 1
-              if counter == 4
-                return true
+        if cell == "x"
+          if cell_index + 1 < row.length && row_index + 1 < @full_board.length
+            if @full_board[row_index + 1][cell_index + 1] == "x"
+              if cell_index + 2 < row.length && row_index + 2 < @full_board.length
+                if @full_board[row_index + 2][cell_index + 2] == "x"
+                  if cell_index + 3 < row.length && row_index + 3 < @full_board.length
+                    if @full_board[row_index + 3][cell_index + 3] == "x"
+                      return true
+                    end
+                  end
+                end
               end
-              if array[index + 1] != "x" && counter != 4
-                counter = 0
-              end
-            end
-            if cell_position == "o"
-              counter += 1
-              if counter == 4
-                return true
-              end
-               if array[index + 1] != "o" && counter != 4
-                 counter = 0
-               end
             end
           end
         end
-      return false
+        if cell == "o"
+          if cell_index + 1 < row.length && row_index + 1 < @full_board.length
+            if @full_board[row_index + 1][cell_index + 1] == "o"
+              if cell_index + 2 < row.length && row_index + 2 < @full_board.length
+                if @full_board[row_index + 2][cell_index + 2] == "o"
+                  if cell_index + 3 < row.length && row_index + 3 < @full_board.length
+                    if @full_board[row_index + 3][cell_index + 3] == "o"
+                      return true
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
     end
+    return false
   end
+
+  def has_won_diagonally_negative?
+
+    @full_board.each_with_index do |row, row_index|
+      row.each_with_index do |cell, cell_index|
+        if cell == "x"
+          if cell_index - 1 < row.length && row_index + 1 < @full_board.length
+            if @full_board[row_index + 1][cell_index - 1] == "x"
+              if cell_index - 2 < row.length && row_index + 2 < @full_board.length
+                if @full_board[row_index + 2][cell_index - 2] == "x"
+                  if cell_index - 3 < row.length && row_index + 3 < @full_board.length
+                    if @full_board[row_index + 3][cell_index - 3] == "x"
+                      return true
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+        if cell == "o"
+          if cell_index - 1 < row.length && row_index + 1 < @full_board.length
+            if @full_board[row_index + 1][cell_index - 1] == "o"
+              if cell_index - 2 < row.length && row_index + 2 < @full_board.length
+                if @full_board[row_index + 2][cell_index - 2] == "o"
+                  if cell_index - 3 < row.length && row_index + 3 < @full_board.length
+                    if @full_board[row_index + 3][cell_index - 3] == "o"
+                      return true
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+    return false
+  end
+
+
+
+
+
 
 
   def add_x(row, col)
