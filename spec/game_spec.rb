@@ -9,15 +9,10 @@ RSpec.describe Game do
     expect(game).to be_an_instance_of(Game)
   end
 
-  xit "welcome message" do
+  it "can read attributes" do
     game = Game.new
 
-    expect(game.game_open).to eq()
-  end
-
-  xit "start game" do
-    game = Game.new
-
-    expect().to eq()
+    expect(game.human_player.type).to eq(:human)
+    expect(game.comp_player.type).to eq(:computer)
   end
 end
